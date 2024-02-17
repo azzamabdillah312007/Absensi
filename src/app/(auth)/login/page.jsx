@@ -8,16 +8,35 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 import { Label } from "@/components/ui/label";
+import { Toaster, toast } from "sonner";
+import { siginin } from "@/utils";
+import { useRouter } from "next/navigation";
 
-export default function page() {
+export default function Page() {
   const { register, handleSubmit, reset } = useForm();
+  const router = useRouter()
 
-  const onSubmit = (data) => {
-    alert(JSON.stringify(data, null, 2));
+
+  const onSubmit = async ({ email, password }) => {
+
+    toast.promise(siginin(email, password), {
+      loading: 'Proses Masuk',
+      success: () =>{
+        router.push('/admin')
+        return 'Berhasil Masukan '
+      },
+      error: ()=>{
+        return 'Gagal Masuk, Password atau Email mungkin salah nih'
+      },
+      description: (e)=>{
+        return e.message
+      }
+    });
   };
 
   return (
     <div>
+      <Toaster />
       <h1 className="text-center mt-9 font-semibold text-3xl">Login Pegawai</h1>
       <div className=" p-4 flex justify-center">
         <form
@@ -27,11 +46,7 @@ export default function page() {
           <h1 className=" text-center">Login</h1>
           <div className=" mt-4">
             <Label>Masukan username kamu</Label>
-            <Input
-              type="text"
-              placeholder="username"
-              {...register("username")}
-            />
+            <Input type="text" placeholder="email" {...register("email")} />
           </div>
           <div className=" mt-4">
             <Label>Masukan password kamu</Label>

@@ -11,12 +11,12 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 
 
-export default function page() {
+export default function Page() {
 
     const { register, handleSubmit, reset } = useForm();
 
     const onClickAbsen = (data) => {
-      alert('pegawai dengan data' + JSON.stringify(data, null, 2) + 'absen');
+      // alert('pegawai dengan data' + JSON.stringify(data, null, 2) + 'absen');
     };
 
 

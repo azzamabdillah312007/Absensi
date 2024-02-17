@@ -1,6 +1,6 @@
-import '../../globals.css'
+import "../../globals.css";
 // import Sidebar from '../../../components/sidebar/sidebar-pegawai/page'
-import Sidebar from '../../../components/sidebar/sidebar-pegawai/page'
+import Sidebar from "../../../components/sidebar/sidebar-pegawai/page";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -11,13 +11,11 @@ import Sidebar from '../../../components/sidebar/sidebar-pegawai/page'
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body>
-        <div className=" grid grid-cols-[20%_1fr] bg-slate-50">
-          <Sidebar />
-          <div>{children}</div>
-        </div>
-      </body>
-    </html>
+    <>
+      <div className=" grid grid-cols-[20%_1fr] bg-slate-50">
+        <Sidebar />
+        <div>{children}</div>
+      </div>
+    </>
   );
 }

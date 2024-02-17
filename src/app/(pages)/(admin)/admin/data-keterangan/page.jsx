@@ -1,4 +1,3 @@
-import React from "react";
 
 export default function page() {
   const data = [
@@ -59,7 +58,7 @@ export default function page() {
           <th className=" p-4">Aksi</th>
         </tr>
         {data.map((items) => (
-          <tr className=" border">
+          <tr key={items.id_pegawai} className=" border">
             <td className=" p-4">{items.no}</td>
             <td className=" p-4">{items.id_pegawai}</td>
             <td className=" p-4">{items.nama}</td>

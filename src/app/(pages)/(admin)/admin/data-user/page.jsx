@@ -1,41 +1,32 @@
-"use client";
+import FormAdmin from "@/components/admin/form/FormAdmin";
+import TableAdmin from "@/components/admin/table/TableAdmin";
+import Link from "next/link";
+import { Suspense } from "react";
 
-import React from "react";
-import { useForm } from "react-hook-form";
-
-// shad cn
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-
-export default function page() {
-  const { register, handleSubmit, reset } = useForm();
-
-  const onSubmit = (data) => {
-    alert(JSON.stringify(data, null, 2));
-  };
-
+export default function Page() {
   return (
-    <div className=" p-4 flex justify-center">
-      <form
-        className=" border w-[80%] p-5 rounded-md bg-white"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <h1 className=" text-center">Data User</h1>
-        <div className=" mt-4">
-          <Input type="text" placeholder="username" {...register("username")} />
+    <div>
+      <FormAdmin />
+
+      <div className="p-8 flex flex-col mx-auto gap-5 max-w-[75vw]">
+        <div className="flex justify-between">
+          <h1 className="text-2xl text-slate-700 font-semibold">
+            Data Admin
+          </h1>
+          <Link
+            className="p-2 rounded bg-slate-200 text-slate-600 hover:bg-slate-300 text-sm"
+            href="https://console.firebase.google.com/u/1/project/inventaris-4d78d/authentication/users?hl=id"
+          >
+            Hapus Email
+          </Link>
         </div>
-        <div className=" mt-4">
-          <Input type="password" placeholder="password" {...register("password")} />
+
+        <div className="max-w-[85vw] overflow-auto bg-white rounded-md">
+          <Suspense fallback={<h1 className="text-center">Loading...</h1>}>
+            <TableAdmin />
+          </Suspense>
         </div>
-        <div className=" mt-4 flex justify-between gap-10">
-          <Button type="submit" className="bg-blue-500 w-full">
-            Kirim
-          </Button>
-          <Button type="submit" className="bg-orange-500 w-full">
-            Batal
-          </Button>
-        </div>
-      </form>
+      </div>
     </div>
   );
 }
